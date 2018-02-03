@@ -23,9 +23,9 @@ def init_logger(logger_name):
         logger1.addHandler(handler1)
         # handler error
         try:
-            handler2 = TimedRotatingFileHandler('/web_wx/logs/error.log', when='D', interval=1, backupCount=7)
+            handler2 = TimedRotatingFileHandler('./logs/error.log', when='D', interval=1, backupCount=7)
         except Exception:
-            handler2 = TimedRotatingFileHandler('/web_wx/logs/error.log', when='D', interval=1, backupCount=7)
+            handler2 = TimedRotatingFileHandler('./error.log', when='D', interval=1, backupCount=7)
         handler2.setFormatter(formatter)
         handler2.setLevel(logging.ERROR)
         logger1.addHandler(handler2)
