@@ -28,8 +28,6 @@ class WxSignatureHandler(tornado.web.RequestHandler):
                 self.write(echostr)
             else:
                 logger.error('微信sign校验,---校验失败')
-
-            return result
         except Exception as e:
             logger.error('微信sign校验,---Exception' + str(e))
 
