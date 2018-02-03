@@ -44,7 +44,7 @@ class WxSignatureHandler(tornado.web.RequestHandler):
 
     def post(self, *args, **kwargs):
         body = self.request.body
-        logger.debug('微信消息回复中心】收到用户消息'+ str(body.encode('utf-8')))
+        logger.debug('微信消息回复中心】收到用户消息'+ str(body.decode('utf-8')))
         data = ET.fromstring(body)
         ToUserName = data.find('ToUserName').text
         FromUserName = data.find('FromUserName').text
