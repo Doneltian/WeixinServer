@@ -1,7 +1,7 @@
 from core.logger_helper import logger
 import tornado.ioloop
 import json
-import core.cache.tokencache
+from core.cache import tokencache
 import requests
 
 class WxShedule(object):
