@@ -4,6 +4,7 @@ import tornado.ioloop
 import tornado.web
 from tornado.options import define, options
 
+from core.server.wxmenu import WxMenuServer
 from core.server.wxshedule import WxShedule
 from core.url import urlpatterns
 
@@ -31,5 +32,8 @@ def main():
     wx_shedule.excute()
     tornado.ioloop.IOLoop.current().start()
 
+    wx_menu_server = WxMenuServer()
+    # '''自定义菜单创建接口'''
+    wx_menu_server.create_menu()
 if __name__ == '__main__':
     main()
