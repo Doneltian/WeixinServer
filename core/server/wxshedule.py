@@ -31,7 +31,7 @@ class WxShedule(object):
         if r.status_code == 200:
             res = r.text
             logger.info('【获取微信全局唯一票据access_token】》》》'+ res)
-            d = json.load(res)
+            d = json.loads(res)
             if 'access_token' in d.keys():
                 access_token = d['access_token']
                 # 添加至redis中
@@ -57,7 +57,7 @@ class WxShedule(object):
             if r.status_code == 200:
                 res = r.text
                 logger.info('【微信JS-SDK】获取JS_SDK权限签名的jsapi_ticket>>>>' + res)
-                d = json.load(res)
+                d = json.loads(res)
                 errcode = d['errcode']
                 if errcode == 0:
                     jsapi_ticket = d['ticket']

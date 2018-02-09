@@ -30,7 +30,7 @@ class WxMenuServer(object):
             if r.status_code == 200:
                 res = r.text
                 logger.debug('【微信自定义菜单】自定义菜单创建接口' + res)
-                json_res = json.load(res)
+                json_res = json.loads(res)
                 if 'errcode' in json_res.keys():
                     errcode = json_res['errcode']
                     return errcode
