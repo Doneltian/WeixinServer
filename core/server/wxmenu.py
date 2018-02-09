@@ -1,7 +1,5 @@
 import json
-
 import requests
-
 from core.cache.tokencache import TokenCache
 from core.logger_helper import logger
 from core.server.wxauthorize import WxAuthorServer
