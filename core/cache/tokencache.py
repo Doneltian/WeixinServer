@@ -14,7 +14,7 @@ class TokenCache(BaseCache):
     KEY_ACCESS_TOKEN = 'access_token'  # 微信全局唯一票据access_token
     KEY_JSAPI_TICKET = 'jsapi_ticket'  # JS_SDK权限签名的jsapi_ticket
 
-    def set_access_caceh(self,key,value):
+    def set_access_cache(self,key,value):
         """添加微信access_token验证相关redis"""
         res = self.redis_ctl.set(key,value)
         self.redis_ctl.expire(key,self._expire_access_token)

@@ -35,7 +35,7 @@ class WxShedule(object):
             if 'access_token' in d.keys():
                 access_token = d['access_token']
                 # 添加至redis中
-                self._token_cache.set_access_caceh(self._token_cache.KEY_ACCESS_TOKEN,access_token)
+                self._token_cache.set_access_cache(self._token_cache.KEY_ACCESS_TOKEN,access_token)
                 # 获取JS_SDK权限签名的jsapi_ticket
                 self.get_jsapi_ticket()
                 return access_token
