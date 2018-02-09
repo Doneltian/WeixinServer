@@ -3,6 +3,8 @@ import tornado.httpserver
 import tornado.ioloop
 import tornado.web
 from tornado.options import define, options
+
+from core.server.wxshedule import WxShedule
 from core.url import urlpatterns
 
 define('port', default=8000, help='run on the given port', type=int)
@@ -23,6 +25,10 @@ def main():
     tornado.options.parse_command_line()
     http_server = tornado.httpserver.HTTPServer(Application())
     http_server.listen(options.port)
+
+    # 执行定时任务
+    wx_shedule = WxShedule()
+    wx_shedule.excute()
     tornado.ioloop.IOLoop.current().start()
 
 if __name__ == '__main__':
