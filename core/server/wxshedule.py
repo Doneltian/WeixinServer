@@ -1,8 +1,11 @@
 from core.logger_helper import logger
 import tornado.ioloop
 import json
-from core.cache import tokencache
+from core.cache.tokencache import TokenCache
 import requests
+
+from core.server.wxconfig import WxConfig
+
 
 class WxShedule(object):
     """
@@ -12,7 +15,7 @@ class WxShedule(object):
     get_jsapi_ticket           获取JS_SDK权限签名的jsapi_ticket
     """
 
-    _token_cache = core.cache.tokencache.TokenCache() #微信token缓存实例
+    _token_cache = TokenCache() #微信token缓存实例
     _expire_time_access_token = 7000 * 1000  # token过期时间
 
     def excute(self):
@@ -23,7 +26,7 @@ class WxShedule(object):
 
     def get_access_token(self):
         """获取微信全局唯一票据access_token"""
-        url = core.server.WxConfig.config_get_access_token_url
+        url = WxConfig.config_get_access_token_url
         r = requests.get(url)
         logger.info('【获取微信全局票据access_token】Response【'+ str(r.status_code) + '】')
         if r.status_code == 200:
