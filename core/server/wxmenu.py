@@ -81,7 +81,7 @@ class WxMenuServer(object):
             'url': url
         }
         menu_data['button'].append((menu_Index0))
-        MENU_DATA = json.dump(menu_data , ensure_ascii= False)
+        MENU_DATA = json.dumps(menu_data , ensure_ascii= False)
         logger.debug('【微信自定义菜单】创建菜单数据MENU_DATA[' + str(MENU_DATA) + ']')
         return MENU_DATA
 
