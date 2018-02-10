@@ -4,9 +4,28 @@ import requests
 import json
 from core.server.wxconfig import WxConfig
 from core.cache.tokencache import TokenCache
+import threading
+
 
 
 class WxShedule(object):
+
+    # 定义静态变量实例
+    __instance = None
+    #锁
+    Lock = threading.Lock()
+
+    #线程安全的单例
+    def __new__(cls, *args, **kwargs):
+        if(WxShedule.__instance == None):
+            WxShedule.Lock.acquire();
+            if(WxShedule.__instance == None):
+                WxShedule.__instance = object.__new__(WxShedule);
+            WxShedule.Lock.release()
+
+        return WxShedule.__instance
+
+
     """
     定时任务调度器
     excute                      执行定时器任务
@@ -74,7 +93,10 @@ class WxShedule(object):
             logger.error(
                 '【微信JS-SDK】获取JS_SDK权限签名的jsapi_ticket时,access_token获取失败, will retry get_access_token() method after 10s')
             tornado.ioloop.IOLoop.instance().call_later(10, self.get_access_token)
-if __name__ == '__main__':
-    wx_shedule = WxShedule()
-    """执行定时器"""
-    wx_shedule.excute()
+
+
+
+# if __name__ == '__main__':
+#     wx_shedule = WxShedule()
+#     """执行定时器"""
+#     wx_shedule.excute()

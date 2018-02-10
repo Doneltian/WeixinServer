@@ -2,7 +2,7 @@ import json
 import urllib
 
 import requests
-
+import threading
 from core.logger_helper import logger
 import hashlib
 import tornado.web
@@ -17,7 +17,6 @@ class WxSignatureHandler(tornado.web.RequestHandler):
     微信服务器签名验证, 消息回复
     check_signature: 校验signature是否正确
     """
-
     def data_received(self,chunk):
         pass
 
@@ -106,6 +105,18 @@ class WxAuthorServer(object):
     check_auth                              检验授权凭证（access_token）是否有效
     get_userinfo                            拉取用户信息
     """
+
+    __instance = None
+    _lock = threading.Lock()
+
+    #单例
+    def __new__(cls, *args, **kwargs):
+        if(WxAuthorServer.__instance == None):
+            WxAuthorServer._lock.acquire()
+            if (WxAuthorServer.__instance == None):
+                WxAuthorServer.__instance = object.__new__(WxAuthorServer)
+            WxAuthorServer._lock.release()
+        return WxAuthorServer.__instance
 
     """授权后重定向的回调链接地址，请使用urlencode对链接进行处理"""
     REDIRECT_URI = '%s/wx/wxauthor' % WxConfig.AppHost
