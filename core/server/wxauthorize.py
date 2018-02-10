@@ -7,8 +7,8 @@ import hashlib
 import tornado.web
 import xml.etree.ElementTree as ET
 import time
-import core.server.wxconfigWxConfig
-import core.server.WxMenuServer
+import core.server.wxconfig
+import core.server.wxmenu
 
 
 class WxSignatureHandler(tornado.web.RequestHandler):
@@ -83,7 +83,7 @@ class WxSignatureHandler(tornado.web.RequestHandler):
                     # 关注事件
 
                     #创建自定义菜单
-                    wx_menu_server = WxMenuServer()
+                    wx_menu_server = core.server.wxmenu.WxMenuServer()
                     # '''自定义菜单创建接口'''
                     wx_menu_server.create_menu()
 
@@ -125,7 +125,7 @@ class WxAuthorServer(object):
         return WxAuthorServer.__instance
 
     """授权后重定向的回调链接地址，请使用urlencode对链接进行处理"""
-    REDIRECT_URI = '%s/wx/wxauthor' % WxConfig.AppHost
+    REDIRECT_URI = '%s/wx/wxauthor' % core.server.wxconfig.WxConfig.AppHost
 
     """
         应用授权作用域
@@ -146,14 +146,14 @@ class WxAuthorServer(object):
         dict = {'redirect_url': self.REDIRECT_URI}
         redirect_url = urllib.parse.urlencode(dict)
         author_get_code_url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=%s&%s&response_type=code&scope=%s&state=%s#wechat_redirect' % (
-        WxConfig.AppID, redirect_url, self.SCOPE, state)
+            core.server.wxconfig.WxConfig.AppID, redirect_url, self.SCOPE, state)
         logger.debug('【微信网页授权】获取网页授权的code的url>>>>' + author_get_code_url)
         return author_get_code_url
 
     def get_auth_access_token(self, code):
         """通过code换取网页授权access_token"""
         url = self.get_access_token_url + 'appid=%s&secret=%s&code=%s&grant_type=authorization_code' % (
-        WxConfig.AppID, WxConfig.AppSecret, code)
+            core.server.wxconfig.WxConfig.AppID, core.server.wxconfig.WxConfig.AppSecret, code)
         r = requests.get(url)
         logger.debug('【微信网页授权】通过code换取网页授权access_token的Response[' + str(r.status_code) + ']')
         if r.status_code == 200:
