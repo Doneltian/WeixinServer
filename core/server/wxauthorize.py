@@ -10,6 +10,7 @@ import xml.etree.ElementTree as ET
 import time
 
 from core.server.wxconfig import WxConfig
+from core.server.wxmenu import WxMenuServer
 
 
 class WxSignatureHandler(tornado.web.RequestHandler):
@@ -82,6 +83,13 @@ class WxSignatureHandler(tornado.web.RequestHandler):
                 Event = data.find('Event').text
                 if Event == 'subscribe':
                     # 关注事件
+
+                    #创建自定义菜单
+                    wx_menu_server = WxMenuServer()
+                    # '''自定义菜单创建接口'''
+                    wx_menu_server.create_menu()
+
+                    #发送欢迎语
                     CreateTime = int(time.time())
                     reply_content = '欢迎关注我的公众号~'
                     out = self.reply_text(FromUserName, ToUserName, CreateTime, reply_content)
