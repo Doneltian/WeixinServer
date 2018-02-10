@@ -83,9 +83,10 @@ class WxSignatureHandler(tornado.web.RequestHandler):
                     # 关注事件
 
                     #创建自定义菜单
+                    url = WxAuthorServer.get_code_url('menuIndex0')
                     wx_menu_server = core.server.wxmenu.WxMenuServer()
                     # '''自定义菜单创建接口'''
-                    wx_menu_server.create_menu()
+                    wx_menu_server.create_menu(url)
 
                     #发送欢迎语
                     CreateTime = int(time.time())
@@ -124,6 +125,10 @@ class WxAuthorServer(object):
             WxAuthorServer._lock.release()
         return WxAuthorServer.__instance
 
+    @staticmethod
+    def getInstance():
+        return WxAuthorServer.__instance
+
     """授权后重定向的回调链接地址，请使用urlencode对链接进行处理"""
     REDIRECT_URI = '%s/wx/wxauthor' % core.server.wxconfig.WxConfig.AppHost
 
@@ -141,12 +146,13 @@ class WxAuthorServer(object):
     """拉取用户信息"""
     get_userinfo_url = 'https://api.weixin.qq.com/sns/userinfo?'
 
-    def get_code_url(self, state):
+    @classmethod
+    def get_code_url(cls, state):
         """获取code 的url"""
-        dict = {'redirect_url': self.REDIRECT_URI}
+        dict = {'redirect_url': cls.REDIRECT_URI}
         redirect_url = urllib.parse.urlencode(dict)
         author_get_code_url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=%s&%s&response_type=code&scope=%s&state=%s#wechat_redirect' % (
-            core.server.wxconfig.WxConfig.AppID, redirect_url, self.SCOPE, state)
+            core.server.wxconfig.WxConfig.AppID, redirect_url, cls.SCOPE, state)
         logger.debug('【微信网页授权】获取网页授权的code的url>>>>' + author_get_code_url)
         return author_get_code_url
 

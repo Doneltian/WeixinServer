@@ -2,9 +2,7 @@ import json
 import requests
 from core.cache.tokencache import TokenCache
 from core.logger_helper import logger
-import core.server.wxauthorize
 from core.server.wxconfig import WxConfig
-
 
 class WxMenuServer(object):
     """
@@ -17,14 +15,14 @@ class WxMenuServer(object):
     """
 
     _token_cache = TokenCache()  # 微信token缓存
-    _wx_author_server = core.server.wxauthorize.WxAuthorServer()  # 微信网页授权server
+    # _wx_author_server = core.server.wxauthorize.WxAuthorServer()  # 微信网页授权server
 
-    def create_menu(self):
+    def create_menu(self,url):
         """自定义菜单创建接口"""
         access_token = self._token_cache.get_cache(self._token_cache.KEY_ACCESS_TOKEN)
         if access_token:
             url = WxConfig.menu_create_url + access_token
-            data = self.create_menu_data()
+            data = self.create_menu_data(url)
             r = requests.post(url, data.encode('utf-8'))
             logger.debug('【微信自定义菜单】自定义菜单创建接口Response[' + str(r.status_code) + ']')
             if r.status_code == 200:
@@ -74,13 +72,13 @@ class WxMenuServer(object):
             logger.error('【微信自定义菜单】自定义菜单删除接口获取不到access_token')
 
 
-    def create_menu_data(self):
+    def create_menu_data(self,url):
         """创建菜单数据"""
         menu_data = {'button' : []} #大彩蛋
         menu_Index0 = {
             'type':'view',
             'name': '测试菜单1',
-            'url': self._wx_author_server.get_code_url('menuIndex0')
+            'url': url
         }
         menu_data['button'].append((menu_Index0))
         MENU_DATA = json.dump(menu_data , ensure_ascii= False)
