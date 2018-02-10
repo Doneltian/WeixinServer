@@ -24,5 +24,5 @@ class WxConfig(object):
     '''微信公众号菜单映射数据'''
     """重定向后会带上state参数，开发者可以填写a-zA-Z0-9的参数值，最多128字节"""
     wx_menu_state_map = {
-        'menuIndex0': '%s/page/index' % AppHost,  # 测试菜单1
+        'menuIndex0': '%s/page/index' %AppHost,  # 测试菜单1
     }

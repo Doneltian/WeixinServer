@@ -130,7 +130,7 @@ class WxAuthorServer(object):
         return WxAuthorServer.__instance
 
     """授权后重定向的回调链接地址，请使用urlencode对链接进行处理"""
-    REDIRECT_URI = '%s/wx/wxauthor' % core.server.wxconfig.WxConfig.AppHost
+    REDIRECT_URI = '%s/wx/wxauthor'%core.server.wxconfig.WxConfig.AppHost
 
     """
         应用授权作用域
