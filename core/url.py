@@ -8,6 +8,5 @@ web解析规则
 
 urlpatterns = [
     (r'/wxsignature', WxSignatureHandler),  # 微信签名
-    (r'/page/(.*)', PageHandler),#加载第三方页面
     (r'/wx/wxauthor', WxHandler),#网页授权处理
    ]
