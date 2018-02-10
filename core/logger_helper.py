@@ -8,8 +8,8 @@ from logging.handlers import TimedRotatingFileHandler
 def init_logger(logger_name):
     if logger_name not in Logger.manager.loggerDict:
         logger1 = logging.getLogger(logger_name)
-        logger1.setLevel(logging.INFO)  # 设置最低级别
-        # logger1.setLevel(logging.DEBUG)  # 设置最低级别
+        # logger1.setLevel(logging.INFO)  # 设置最低级别
+        logger1.setLevel(logging.DEBUG)  # 设置最低级别
         df = '%Y-%m-%d %H:%M:%S'
         format_str = '[%(asctime)s]: %(name)s %(levelname)s %(lineno)s %(message)s'
         formatter = logging.Formatter(format_str, df)

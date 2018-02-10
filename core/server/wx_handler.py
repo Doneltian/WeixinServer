@@ -23,6 +23,9 @@ class WxHandler(tornado.web.RequestHandler):
     def post(self, flag):
         if flag == 'wxauthor':
             '''微信网页授权'''
+            body = self.request.body
+            logger.debug('微信网页授权】收到消息' + str(body.decode('utf-8')))
+
             code = self.get_argument('code')
             state = self.get_argument('state')
             # 获取重定向的url

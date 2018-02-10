@@ -93,10 +93,6 @@ class WxSignatureHandler(tornado.web.RequestHandler):
                     reply_content = '欢迎关注我的公众号~'
                     out = self.reply_text(FromUserName, ToUserName, CreateTime, reply_content)
                     self.write(out)
-                elif Event == 'CLICK':
-                    #自定义菜单点击
-                    state = data.find('EventKey').text
-                    # WxAuthorServer.get_code_url(state)
             except Exception as e:
                 logger.error(e)
 
