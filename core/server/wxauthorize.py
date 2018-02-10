@@ -1,6 +1,5 @@
 import json
 import urllib
-
 import requests
 import threading
 from core.logger_helper import logger
@@ -8,9 +7,8 @@ import hashlib
 import tornado.web
 import xml.etree.ElementTree as ET
 import time
-
-from core.server.wxconfig import WxConfig
-from core.server.wxmenu import WxMenuServer
+import core.server.wxconfigWxConfig
+import core.server.WxMenuServer
 
 
 class WxSignatureHandler(tornado.web.RequestHandler):

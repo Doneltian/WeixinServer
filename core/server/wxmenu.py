@@ -2,7 +2,7 @@ import json
 import requests
 from core.cache.tokencache import TokenCache
 from core.logger_helper import logger
-from core.server.wxauthorize import WxAuthorServer
+import core.server.wxauthorize.WxAuthorServer
 from core.server.wxconfig import WxConfig
 
 
@@ -17,7 +17,7 @@ class WxMenuServer(object):
     """
 
     _token_cache = TokenCache()  # 微信token缓存
-    _wx_author_server = WxAuthorServer()  # 微信网页授权server
+    _wx_author_server = core.server.wxauthorize.WxAuthorServer()  # 微信网页授权server
 
     def create_menu(self):
         """自定义菜单创建接口"""
@@ -87,14 +87,14 @@ class WxMenuServer(object):
         logger.debug('【微信自定义菜单】创建菜单数据MENU_DATA[' + str(MENU_DATA) + ']')
         return MENU_DATA
 
-if __name__ == '__main__':
-    wx_menu_server = WxMenuServer()
-    '''创建菜单数据'''
-    # wx_menu_server.create_menu_data()
-    # '''自定义菜单创建接口'''
-    wx_menu_server.create_menu()
-    '''自定义菜单查询接口'''
-    # wx_menu_server.get_menu()
-    '''自定义菜单删除接口'''
-    # wx_menu_server.delete_menu()
+# if __name__ == '__main__':
+#     wx_menu_server = WxMenuServer()
+#     '''创建菜单数据'''
+#     # wx_menu_server.create_menu_data()
+#     # '''自定义菜单创建接口'''
+#     wx_menu_server.create_menu()
+#     '''自定义菜单查询接口'''
+#     # wx_menu_server.get_menu()
+#     '''自定义菜单删除接口'''
+#     # wx_menu_server.delete_menu()
 

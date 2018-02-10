@@ -3,8 +3,6 @@ import tornado.httpserver
 import tornado.ioloop
 import tornado.web
 from tornado.options import define, options
-
-from core.server.wxmenu import WxMenuServer
 from core.server.wxshedule import WxShedule
 from core.url import urlpatterns
 
