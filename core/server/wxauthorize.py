@@ -9,7 +9,7 @@ import xml.etree.ElementTree as ET
 import time
 import core.server.wxconfig
 import core.server.wxmenu
-
+import core.server.singleton
 
 class WxSignatureHandler(tornado.web.RequestHandler):
     """
@@ -83,7 +83,9 @@ class WxSignatureHandler(tornado.web.RequestHandler):
                     # 关注事件
 
                     #创建自定义菜单
-                    url = WxAuthorServer.get_code_url('menuIndex0')
+                    # url = WxAuthorServer.get_code_url('menuIndex0')
+                    url = core.server.wxconfig.WxConfig.wx_menu_state_map['menuIndex0']
+                    logger.debug('微信创建自定义菜单】url = ' + url)
                     wx_menu_server = core.server.wxmenu.WxMenuServer()
                     # '''自定义菜单创建接口'''
                     wx_menu_server.create_menu(url)
@@ -103,7 +105,7 @@ class WxSignatureHandler(tornado.web.RequestHandler):
         return out
 
 
-class WxAuthorServer(object):
+class WxAuthorServer(core.server.singleton.Singleton):
     """
     微信网页授权server
     get_code_url                            获取code的url
@@ -112,22 +114,6 @@ class WxAuthorServer(object):
     check_auth                              检验授权凭证（access_token）是否有效
     get_userinfo                            拉取用户信息
     """
-
-    __instance = None
-    _lock = threading.Lock()
-
-    #单例
-    def __new__(cls, *args, **kwargs):
-        if(WxAuthorServer.__instance == None):
-            WxAuthorServer._lock.acquire()
-            if (WxAuthorServer.__instance == None):
-                WxAuthorServer.__instance = object.__new__(WxAuthorServer)
-            WxAuthorServer._lock.release()
-        return WxAuthorServer.__instance
-
-    @staticmethod
-    def getInstance():
-        return WxAuthorServer.__instance
 
     """授权后重定向的回调链接地址，请使用urlencode对链接进行处理"""
     REDIRECT_URI = '%s/wx/wxauthor'%core.server.wxconfig.WxConfig.AppHost

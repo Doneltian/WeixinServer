@@ -8,21 +8,6 @@ class TokenCache(BaseCache):
     set_cache  添加redis
     get_cache  获取redis
     """
-
-    #静态实例
-    __instance = None
-    #锁
-    _lock = threading.Lock()
-
-    #单例
-    def __new__(cls, *args, **kwargs):
-        if(TokenCache.__instance == None):
-            TokenCache._lock.acquire()
-            if(TokenCache.__instance == None):
-                TokenCache.__instance = object.__new__(TokenCache)
-            TokenCache._lock.release()
-        return TokenCache.__instance
-
     _expire_access_token = 7200 #微信access_token期时间, 2小时
     _expire_js_token = 30 * 24 * 3600  # 微信js网页授权过期时间, 30天
     KEY_ACCESS_TOKEN = 'access_token'  # 微信全局唯一票据access_token

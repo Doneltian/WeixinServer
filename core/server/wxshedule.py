@@ -5,27 +5,10 @@ import json
 from core.server.wxconfig import WxConfig
 from core.cache.tokencache import TokenCache
 import threading
+import core.server.singleton
 
 
-
-class WxShedule(object):
-
-    # 定义静态变量实例
-    __instance = None
-    #锁
-    Lock = threading.Lock()
-
-    #线程安全的单例
-    def __new__(cls, *args, **kwargs):
-        if(WxShedule.__instance == None):
-            WxShedule.Lock.acquire();
-            if(WxShedule.__instance == None):
-                WxShedule.__instance = object.__new__(WxShedule);
-            WxShedule.Lock.release()
-
-        return WxShedule.__instance
-
-
+class WxShedule(core.server.singleton.Singleton):
     """
     定时任务调度器
     excute                      执行定时器任务

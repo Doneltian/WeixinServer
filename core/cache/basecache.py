@@ -1,5 +1,5 @@
 import redis
-
+import core.server.singleton
 """缓存服务器"""
 CACHE_SERVER = {
     'host': '127.0.0.1',
@@ -8,7 +8,7 @@ CACHE_SERVER = {
     'password': '',
 }
 
-class BaseCache(object):
+class BaseCache(core.server.singleton.Singleton):
     """
     缓存类父类
 
