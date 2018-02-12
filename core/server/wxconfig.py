@@ -6,7 +6,7 @@ class WxConfig(object):
     AppSecret = '8bfbe5b50c37ca11db03262d9134766d'
 
     """微信网页开发域名"""
-    AppHost = '120.78.174.191'
+    AppHost = 'http://120.78.174.191'
 
     '''获取access_token'''
     config_get_access_token_url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=%s&secret=%s' % (
