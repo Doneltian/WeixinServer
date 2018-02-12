@@ -141,7 +141,7 @@ class WxAuthorServer(core.server.singleton.Singleton):
     @classmethod
     def get_code_url(cls, state):
         """获取code 的url"""
-        dict = {'redirect_url': cls.REDIRECT_URI}
+        dict = {'redirect_uri': cls.REDIRECT_URI}
         redirect_url = urllib.parse.urlencode(dict)
         author_get_code_url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=%s&redirect_uri=%s&response_type=code&scope=%s&state=%s#wechat_redirect' % (
             core.server.wxconfig.WxConfig.AppID, redirect_url, cls.SCOPE, state)

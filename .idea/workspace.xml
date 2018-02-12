@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f54027e9-9624-43c1-b3b3-fd04ddc29216" name="默认的" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/server/wxauthorize.py" afterPath="$PROJECT_DIR$/core/server/wxauthorize.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,8 +21,8 @@
       <file leaf-file-name="wxauthorize.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/core/server/wxauthorize.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="88" column="58" lean-forward="true" selection-start-line="88" selection-start-column="58" selection-end-line="88" selection-end-column="58" />
+            <state relative-caret-position="361">
+              <caret line="146" column="80" lean-forward="true" selection-start-line="146" selection-start-column="80" selection-end-line="146" selection-end-column="80" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -526,7 +525,7 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="0" width="1378" height="735" extended-state="0" />
+    <frame x="-7" y="0" width="1378" height="735" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -954,8 +953,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/core/server/wxauthorize.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="88" column="58" lean-forward="true" selection-start-line="88" selection-start-column="58" selection-end-line="88" selection-end-column="58" />
+        <state relative-caret-position="361">
+          <caret line="146" column="80" lean-forward="true" selection-start-line="146" selection-start-column="80" selection-end-line="146" selection-end-column="80" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
