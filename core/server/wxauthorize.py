@@ -95,6 +95,11 @@ class WxSignatureHandler(tornado.web.RequestHandler):
                     reply_content = '欢迎关注我的公众号~'
                     out = self.reply_text(FromUserName, ToUserName, CreateTime, reply_content)
                     self.write(out)
+                elif Event == 'VIEW':
+                    #跳转
+
+                    
+                    logger.debug('微信菜单跳转跳转跳转！！！！！！！！！！！！！！！！】')
             except Exception as e:
                 logger.error(e)
 
