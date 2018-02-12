@@ -84,7 +84,8 @@ class WxSignatureHandler(tornado.web.RequestHandler):
 
                     #创建自定义菜单
                     # url = WxAuthorServer.get_code_url('menuIndex0')
-                    url = core.server.wxconfig.WxConfig.wx_menu_state_map['menuIndex0']
+                    #url = core.server.wxconfig.WxConfig.wx_menu_state_map['menuIndex0']
+                    url = WxAuthorServer.REDIRECT_URI
                     logger.debug('微信创建自定义菜单】url = ' + url)
                     wx_menu_server = core.server.wxmenu.WxMenuServer()
                     # '''自定义菜单创建接口'''
@@ -98,7 +99,7 @@ class WxSignatureHandler(tornado.web.RequestHandler):
                 elif Event == 'VIEW':
                     #跳转
 
-                    
+
                     logger.debug('微信菜单跳转跳转跳转！！！！！！！！！！！！！！！！】')
             except Exception as e:
                 logger.error(e)

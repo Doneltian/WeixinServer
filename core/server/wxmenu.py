@@ -21,9 +21,9 @@ class WxMenuServer(object):
         """自定义菜单创建接口"""
         access_token = self._token_cache.get_cache(self._token_cache.KEY_ACCESS_TOKEN)
         if access_token:
-            url = WxConfig.menu_create_url + access_token
+            createmenu_url = WxConfig.menu_create_url + access_token
             data = self.create_menu_data(url)
-            r = requests.post(url, data.encode('utf-8'))
+            r = requests.post(createmenu_url, data.encode('utf-8'))
             logger.debug('【微信自定义菜单】自定义菜单创建接口Response[' + str(r.status_code) + ']')
             if r.status_code == 200:
                 res = r.text
