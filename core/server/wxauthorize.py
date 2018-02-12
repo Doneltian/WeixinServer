@@ -83,9 +83,9 @@ class WxSignatureHandler(tornado.web.RequestHandler):
                     # 关注事件
 
                     #创建自定义菜单
-                    # url = WxAuthorServer.get_code_url('menuIndex0')
+                    url = WxAuthorServer.get_code_url('menuIndex0')
                     #url = core.server.wxconfig.WxConfig.wx_menu_state_map['menuIndex0']
-                    url = WxAuthorServer.REDIRECT_URI
+                    #url = WxAuthorServer.REDIRECT_URI
                     logger.debug('微信创建自定义菜单】url = ' + url)
                     wx_menu_server = core.server.wxmenu.WxMenuServer()
                     # '''自定义菜单创建接口'''
@@ -143,7 +143,7 @@ class WxAuthorServer(core.server.singleton.Singleton):
         """获取code 的url"""
         dict = {'redirect_url': cls.REDIRECT_URI}
         redirect_url = urllib.parse.urlencode(dict)
-        author_get_code_url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=%s&%s&response_type=code&scope=%s&state=%s#wechat_redirect' % (
+        author_get_code_url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=%s&redirect_uri=%s&response_type=code&scope=%s&state=%s#wechat_redirect' % (
             core.server.wxconfig.WxConfig.AppID, redirect_url, cls.SCOPE, state)
         logger.debug('【微信网页授权】获取网页授权的code的url>>>>' + author_get_code_url)
         return author_get_code_url
