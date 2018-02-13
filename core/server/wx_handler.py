@@ -20,7 +20,8 @@ class WxHandler(tornado.web.RequestHandler):
     '''redis服务'''
     wx_token_cache = TokenCache()
 
-    def get(self, flag):
+    def post(self, flag):
+        logger.debug('微信网页授权】flag>>>>>>>' + str(flag))
         if flag == 'wxauthor':
             '''微信网页授权'''
             body = self.request.body
