@@ -8,3 +8,6 @@ class PageHandler(tornado.web.RequestHandler):
         if flag == 'index':
             """首页"""
             self.render('index')
+
+    def get(self):
+        self.render('index.html')
