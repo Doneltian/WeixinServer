@@ -15,4 +15,4 @@ class PageHandler(tornado.web.RequestHandler):
 
     def get(self):
         logger.debug('微信handler处理类】》》》》》》》》》》')
-        self.render('index')
+        self.render('index.html')
