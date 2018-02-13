@@ -122,7 +122,7 @@ class WxAuthorServer(core.server.singleton.Singleton):
     """
 
     """授权后重定向的回调链接地址，请使用urlencode对链接进行处理"""
-    REDIRECT_URI = 'https://120.78.174.191/wx/wxauthor'
+    REDIRECT_URI = 'http://120.78.174.191/wx/wxauthor'
 
     """
         应用授权作用域
