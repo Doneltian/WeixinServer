@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f54027e9-9624-43c1-b3b3-fd04ddc29216" name="默认的" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/server/wxauthorize.py" afterPath="$PROJECT_DIR$/core/server/wxauthorize.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/server/wx_handler.py" afterPath="$PROJECT_DIR$/core/server/wx_handler.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,11 +18,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="wxauthorize.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="wxauthorize.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/server/wxauthorize.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="125" column="0" lean-forward="true" selection-start-line="125" selection-start-column="0" selection-end-line="125" selection-end-column="0" />
+            <state relative-caret-position="189">
+              <caret line="59" column="30" lean-forward="true" selection-start-line="59" selection-start-column="30" selection-end-line="59" selection-end-column="30" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -50,11 +50,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="wx_handler.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="wx_handler.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/core/server/wx_handler.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="27" column="67" lean-forward="true" selection-start-line="27" selection-start-column="67" selection-end-line="27" selection-end-column="67" />
+            <state relative-caret-position="228">
+              <caret line="24" column="30" lean-forward="true" selection-start-line="24" selection-start-column="30" selection-end-line="24" selection-end-column="30" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -187,8 +187,8 @@
         <option value="$PROJECT_DIR$/core/server/wxmenu.py" />
         <option value="$PROJECT_DIR$/core/url.py" />
         <option value="$PROJECT_DIR$/core/server/wxconfig.py" />
-        <option value="$PROJECT_DIR$/core/server/wx_handler.py" />
         <option value="$PROJECT_DIR$/core/server/wxauthorize.py" />
+        <option value="$PROJECT_DIR$/core/server/wx_handler.py" />
       </list>
     </option>
   </component>
@@ -924,16 +924,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/server/wx_handler.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="27" column="67" lean-forward="true" selection-start-line="27" selection-start-column="67" selection-end-line="27" selection-end-column="67" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/server/wxconfig.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
@@ -954,10 +944,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/core/server/wxauthorize.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="125" column="0" lean-forward="true" selection-start-line="125" selection-start-column="0" selection-end-line="125" selection-end-column="0" />
+        <state relative-caret-position="189">
+          <caret line="59" column="30" lean-forward="true" selection-start-line="59" selection-start-column="30" selection-end-line="59" selection-end-column="30" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/server/wx_handler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="24" column="30" lean-forward="true" selection-start-line="24" selection-start-column="30" selection-end-line="24" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
