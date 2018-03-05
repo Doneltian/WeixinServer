@@ -81,15 +81,9 @@ class WxSignatureHandler(tornado.web.RequestHandler):
                 Event = data.find('Event').text
                 if Event == 'subscribe':
                     # 关注事件
+                    wxinit =  WxInit()
+                    wxinit.menu_init();
 
-                    #创建自定义菜单
-                    url = WxAuthorServer.get_code_url('menuIndex0')
-                    #url = core.server.wxconfig.WxConfig.wx_menu_state_map['menuIndex0']
-                    #url = WxAuthorServer.REDIRECT_URI
-                    logger.debug('微信创建自定义菜单】url = ' + url)
-                    wx_menu_server = core.server.wxmenu.WxMenuServer()
-                    # '''自定义菜单创建接口'''
-                    wx_menu_server.create_menu(url)
 
                     #发送欢迎语
                     CreateTime = int(time.time())
@@ -98,17 +92,12 @@ class WxSignatureHandler(tornado.web.RequestHandler):
                     self.write(out)
                 elif Event == 'VIEW':
                     #跳转
-
-
                     logger.debug('微信菜单跳转跳转跳转！！！！！！！！！！！！！！！！】')
             except Exception as e:
                 logger.error(e)
 
-    def reply_text(self, FromUserName, ToUserName, CreateTime, Content):
-        """回复文本消息模板"""
-        textTpl = """<xml> <ToUserName><![CDATA[%s]]></ToUserName> <FromUserName><![CDATA[%s]]></FromUserName> <CreateTime>%s</CreateTime> <MsgType><![CDATA[%s]]></MsgType> <Content><![CDATA[%s]]></Content></xml>"""
-        out = textTpl % (FromUserName, ToUserName, CreateTime, 'text', Content)
-        return out
+
+
 
 
 class WxAuthorServer(core.server.singleton.Singleton):
@@ -167,4 +156,36 @@ class WxAuthorServer(core.server.singleton.Singleton):
                 errcode = json_res['errcode']
 
 
+class WxInit(core.server.singleton.Singleton):
+    """
+    微信关注后初始化
+    create_menu_data：创建主页面菜单
 
+    """
+    wx_menu_server = core.server.wxmenu.WxMenuServer()
+
+    def create_menu_data(self,url):
+        """创建菜单数据"""
+        menu_data = {'button' : []} #大彩蛋
+        menu_Index0 = {
+            'type':'view',
+            'name': '测试菜单1',
+            'url': url
+        }
+        menu_data['button'].append((menu_Index0))
+        MENU_DATA = json.dumps(menu_data , ensure_ascii= False)
+        logger.debug('【微信自定义菜单】创建菜单数据MENU_DATA[' + str(MENU_DATA) + ']')
+        return MENU_DATA
+
+    def menu_init(self):
+        """初始化菜单"""
+        # 创建自定义菜单
+
+        #获取该按钮对应网页授权的url
+        url = WxAuthorServer.get_code_url('menuIndex0')
+        logger.debug('微信创建自定义菜单】url = ' + url)
+
+        data = self.create_menu_data(url)
+
+        # '''自定义菜单创建接口'''
+        WxInit.wx_menu_server.create_menu(data)
